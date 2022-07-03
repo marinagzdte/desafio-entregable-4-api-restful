@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <style>
+        body {background-color: lightgray;}
+        h1   {color: black; font-weight: 500;}
+        input {color: black; display: block;}
+        button {margin: 10px 0px;}
+        </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Ingreso de Productos</title>
+</head>
+<body>
+    
+    <h2>Ingrese los datos del nuevo producto</h2>
+    <form action="/api/productos" method="POST">
+        Title: <input type="text" name="title">
+        Price: <input type="text" name="price">
+        Thumbnail: <input type="text" name="thumbnail">
+        <button>Enviar</button>
+    </form>
+</body>
+</html>
