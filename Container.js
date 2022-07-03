@@ -27,22 +27,25 @@ class Container {
     }
 
     getItemById(id) {
-        return this.array[id - 1]
+        const index = this.array.findIndex(item => item.id === id)
+        if (index === -1)
+            return null
+
+        return this.array[index]
     }
 
     add(item) {
         const currentLength = this.array.length
         item.id = currentLength === 0 ? 1 : this.array[currentLength - 1].id + 1
         this.array.push(item)
-        console.log(this.array)
         return item
     }
 
-    modifyItemById(itemId, newData) {
-        const index = this.array.findIndex(someItem => someItem.id === itemId)
+    modifyItemById(id, newData) {
+        const index = this.array.findIndex(item => item.id === id)
         if (index === -1)
-            throw new Error(`No se encontró el objeto.`)
-        
+            return null
+
         this.array[index].title = newData.title
         this.array[index].price = newData.price
         this.array[index].thumbnail = newData.thumbnail
@@ -53,8 +56,8 @@ class Container {
     deleteItemById(id) {
         const index = this.array.findIndex(item => item.id === id)
         if (index === -1)
-            throw new Error(`No se encontró el objeto.`)
-        
+            return null
+
         return this.array.splice(index, 1)
     }
 }
