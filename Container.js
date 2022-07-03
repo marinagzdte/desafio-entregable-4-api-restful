@@ -59,7 +59,7 @@ class Container {
         if (index === -1)
             return null
 
-        return this.array.splice(index, 1)
+        return this.array.splice(index, 1)[0]
     }
 }
 
