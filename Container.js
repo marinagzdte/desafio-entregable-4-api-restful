@@ -38,6 +38,7 @@ class Container {
         const currentLength = this.array.length
         item.id = currentLength === 0 ? 1 : this.array[currentLength - 1].id + 1
         this.array.push(item)
+        
         return item
     }
 
