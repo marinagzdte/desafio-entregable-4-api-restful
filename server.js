@@ -6,7 +6,7 @@ const app = express()
 
 const router = Router()
 router.use(express.json())
-router.use(express.urlencoded({extended: true}))
+router.use(express.urlencoded({ extended: true }))
 
 const productContainer = new Container()
 
@@ -15,8 +15,15 @@ router.get('', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    const id = req.params.id
-    res.json(productContainer.getItemById(id))
+    const id = Number(req.params.id)
+    const product = productContainer.getItemById(id)
+
+    if (product === null) {
+        res.status(404)
+        res.json({ error: 'producto no encontrado' })
+    }
+    else
+        res.json(product)
 })
 
 router.post('', (req, res) => {
@@ -25,16 +32,31 @@ router.post('', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    const productId = Number(req.params.id)
+    const id = Number(req.params.id)
     const newData = req.body
-    res.json(productContainer.modifyItemById(productId, newData))
+    const product = productContainer.modifyItemById(id, newData)
+
+    if (product === null) {
+        res.status(404)
+        res.json({ error: 'producto no encontrado' })
+    }
+    else
+        res.json(product)
 })
 
 router.delete('/:id', (req, res) => {
-    const productId = Number(req.params.id)
-    res.json(productContainer.deleteItemById(productId))
+    const id = Number(req.params.id)
+    const product = productContainer.deleteItemById(id)
+
+    if (product === null) {
+        res.status(404)
+        res.json({ error: 'producto no encontrado' })
+    }
+    else
+        res.json(product)
 })
 
+app.use(express.static('public'))
 app.use('/api/productos', router)
 
 const PORT = process.env.PORT || 8080
