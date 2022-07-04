@@ -1,25 +1,6 @@
 class Container {
     constructor() {
-        this.array = [
-            {
-                title: "Escuadra",
-                price: "123.45",
-                thumbnail: "/public/escuadra.jpg",
-                id: 1 
-            },
-            { 
-                title: "Globo terráqueo",
-                price: "234.56",
-                thumbnail: "/public/globo-terraqueo.jpg",
-                id: 2 
-            },
-            { 
-                title: "Calculadora",
-                price: "345.67",
-                thumbnail: "/public/calculadora.jpg",
-                id: 3
-            }
-        ]
+        this.array = []
     }
 
     getAllItems() {
